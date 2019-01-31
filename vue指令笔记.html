@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue的笔记</title>
+</head>
+<body>
+<script>
+/*
+
+    在事件函数中，如果不加括号就默认传入event对象,那么事件函数的第一个参数就是event对象。
+        *** 如果在事件函数中，已经有参数了，但是还要使用event对象，那么就使用$event。
+
+
+Vue的常用的指令
+
+v-if
+
+    v-if="数据|判断"
+    只要条件成立，就显示if中的元素
+
+    v-else （注意:必须跟在v-if或者v-if-else的后面，不然失效）
+    如果if条件不成立显示当前的元素
+
+    v-else-if 要紧跟v-if
+
+v-show
+
+    v-show和v-if都是用来控制元素的渲染
+    v-if——判断是否加载，可以减轻服务器的压力，在需要时加载
+    v-show——调整css dispaly属性，可以使客户端操作更加流畅
+
+v-for
+    该指令根据遍历数组来进行渲染
+    循环可以是数据也可以是对象;
+    循环：v-for="(val,key) in arr"
+
+    val:数组中的每个值，对象每个值
+    key:数据就下标，对象key值
+    index:下标0,1,2
+
+v-text和v-html
+
+    v-text => 等同于innerText 文本
+    v-html => 等同于innerHTML 内容（包括元素）
+ 
+    {{msg}}这种当我们网速很慢或者js出错时，会暴露我们的{{xxx}},这时候可以使用v-text
+
+v-on
+    v-on:事件名
+    缩写:@事件名
+    例如： <button @click="add">添加</button>
+
+v-bind
+
+    v-bind:属性名
+    缩写:
+    :class
+    一般是用来操作属性。
+    动态绑定数据，及时对页面的数据进行变更
+    :class="c" 可以写数据
+    :class="{red:true}" red->类名: 布尔值 ，只有为true的时候才显示这个class
+    :class="[c1,c2]" c1和c2为对象 {red:true}
+    常用的：class、style、src、href
+
+    例子： <div :class="classA">绑定class</div>
+        <div :class="{classA:isok}">绑定class的判断</div>
+        <div :class="{classA,classB}">绑定class中数组</div>
+        <div :class="isok?classA:classB">绑定class的三元运算符</div>
+
+v-model
+    在表单上创建双向数据绑定
+
+      只能用数据
+            v-model = "数据"
+            
+    ```
+    在v-for中如果要循环数组，还要使用v-model,
+    那么model中的值，应该传成arr[key],在改变数据的
+    时候使用赋值的方式更改数据。
+    
+    如果是对象，不能使用赋值的方式更改数据。
+    ```
+    
+    <input 
+        v-for="(val,key) in arr"
+        type="checkbox"
+        v-model="arr[key]"
+    />
+    
+
+    在select中，直接绑上v-model，如果option中有value，选择的结果
+    优先value值，如果没有value值，走option的内容。
+
+
+    当在表单元素中，绑定了v-model，那么只要用户改变视图中的内容
+    那么就等同于直接改变数据，当然改变数据，一样会改变视图
+
+    在使用v-model的时候，如果放个数组，那么会自动查找表单元素中的value
+    没有则出现null,如果要统计多个表单元素的信息，可以把同一个数据绑定到 v-model上
+
+v-once
+    你也能执行一次性地插值，当数据改变时，插值处的内容不会更新。
+    但请留心这会影响到该节点上的其它数据绑定：
+    <span v-once>这个将不会改变: {{ msg }}</span>
+
+.prevent  阻止默认行为
+    <form v-on:submit.prevent></form>
+.stop 阻止冒泡
+    <a v-on:click.stop="doThis"></a>
+提交事件不再重载页面 
+    <form v-on:submit.prevent="onSubmit"></form><!-- 修饰符可以串联 --><a v-on:click.stop.prevent="doThat">
+
+
+数据为数组中包对象情况的时候:
+    直接赋值一个新的对象，使用filter是可以的
+
+不能使用map因为map，返回的是一个新的数组，并且新数组的个数是固定的，
+在写过滤的业务时，用filter
+
+
+data:{
+    // arr:[false,false,false,false]
+    arr:[{c:true},{c:false},{c:false},{c:false},{c:false}]
+    },
+        
+        
+map 如果数组中是对象，那么在改变对象中的属性时，不用赋值，就能直接拿到改变之后的值；
+
+map 如果数组中不是对象，那么改变数组的某个值的时候，要改变原数组。要重新赋值一下
+
+
+
+
+
+
+
+*/ 
+
+
+</script>
+</body>
+</html>
