@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>路由</title>
+</head>
+<body>
+<script>
+/*
+
+使用vue-router
+> 配置路由
+    1.安装:npm i vue-router
+
+    2.引包
+        import VueRouter from 'vue-router';
+    3.
+        引用:
+        Vue.use(VueRouter);
+
+    4.需要配置router  ->  route.js
+
+    5.
+        在页面中引入一个<router-view>
+
+
+    用vue-cli 直接vue create 项目名称就搞定了
+
+    单页SPA
+
+
+route.js
+// import Vue from 'vue';  //引入外部的子组件这样引入vue
+import Vue from 'vue/dist/vue.esm.js'; // 在当前页面中 写的一个子组件 然后 配置路由 需要这样写
+import VueRouter from 'vue-router';  //引入路由
+Vue.use(VueRouter);
+
+
+import Child from '子组件';  //引入子组件
+
+//配置路由
+const routes = [
+    {
+        path:'/',
+        component:app
+    },
+    {
+        path:'/ppa',
+        component:ppa
+    }
+];
+
+//将配置好的路由表导出去   ****routes 这个名字不能变
+export default new VueRouter({
+    routes
+});
+
+
+//在main.js中引用路由
+
+在App.vue中这样写
+
+<template>
+  <div id="app">
+      <router-link to="/" tag="button">app</router-link>
+      <router-link to="/ppa" tag="button">ppa</router-link>
+      <router-link to="/child" tag="button">child</router-link>
+      <router-view></router-view>
+  </div>
+</template>
+
+> slot:插槽
+> ref
+
+> ref
+
+```
+ref:
+当做给元素或者组件加了一个id，可以通过this.$refs.xx去找到它们。
+
+使用技巧:
+  如果在操作数据之后，还要操作ref的DOM元素，可以使用nextTick方便操作。
+
+```
+
+`例子`
+
+```
+methods:{
+      click(){
+        // console.log(this.$refs.c);
+        console.log(this.$refs.txt);
+        this.val = '1234';
+        this.$nextTick(()=>{
+          this.$refs.txt.focus();
+        });
+        // this.$refs.txt.focus();
+      },
+    }
+```
+
+
+
+*/ 
+
+</script>
+</body>
+</html>
