@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+/*
+
+> 箭头函数
+    1.没有this，this指向当前箭头函数定义所在作用域中的this
+    2.没有arguments
+    3.不能被new,不能作为构造函数
+    4.不能Generator函数，不能使用yield命令
+> this
+    1.全局下this指向window
+    2.给元素的事件绑定方法，方法中this指向被绑定的元素
+    3.函数中this,看函数执行前有没有 ".",点前面是谁，this就是谁，没有点this就指向window;
+    4.执行函数中的this永远指向window
+    5.回调函数中的this指向window
+    6.构造函数中的this指向当前的实例
+    7.call、apply、bind改变this指向
+
+> 严格模式和非严格模式
+    //"use strict";
+    /*function fn() {
+        console.log(this);// this指向是undefined;
+    }
+    fn();
+
+    在非严格模式下，call传null，undefined，或者不传，都是默认指向window
+
+严格模式和非严格模式的区别：
+    1.严格模式中函数执行前没有 . 或者自执行函数中的this指向undefined
+    2.严格模式下，传null;this就是null;undefined就是undefined;不传也是undefined
+    3.严格模式下，arguments和形参是不存在映射机制的
+    4.不能对只读性赋值
+    5.不能识别0开头的八进制数字
+    
+    function gh(a,b,c) {
+        a = 10;
+        console.log(arguments);//严格模式下；[1,2,3] 非：[10,2,3]
+    }
+    gh(1,2,3);   
+
+> parseInt
+    var a=["1", "2", "3", "4","5",6,7,8,9,10,11,12,13,14,15];
+    a.map(parseInt);
+
+    返回结果为：[1,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,9,11,13,15,17,19]
+
+    正好印证了以上的猜测是正确的，因为：
+    parseInt('1',0) = 1,
+    parseInt('2',1) = NaN,
+    parseInt('3',2) = NaN,
+    ……
+
+    正是由于map的回调函数的参数index索引值作了parseInt的基数radix，
+    导致出现超范围的radix赋值和不合法的进制解析，才会返回NaN。
+
+    
+> Array.from of
+> promise:解决异步  三个状态 pending--> fulfilled  pending--reject  then
+> proxy:拦截器
+
+    let obj = new Proxy({a:1},{
+        get:function(){},
+        set:function(){}
+    })
+
+> 事件行为 onload onscroll onresize
+> 事件对象 event 
+    事件信息 
+        ev.target ev.stopPropagation  ev.preventDefault  ev.clientX  ev.clientY
+        ev.pageX  ev.pageY ev.offsetX  ev.offsetY
+    事件的三个阶段
+        捕获阶段--> 目标阶段 --> 冒泡阶段
+    事件绑定：
+        DOM0 DOM2
+        addEventListener removeEventListener
+    元素.addEventListener(clicl,fn,true/false);
+    
+    attachEvent  detachEvent  这个是IE中特有的
+    在使用attachEvent()方法的情况下，事件处理程序会在全局作用域中运行，因此这里面的this相当于window
+        元素.attachEvent(onclick,fn);
+
+    发布订阅模式
+        订阅 on 发布 run 取消订阅 off
+
+    function on(curEle,type,fn) {
+        // 把方法放在自定义属性上；
+        if(!curEle[type]){
+            curEle[type] = [];
+        }
+        let  ary = curEle[type];
+        // 校验当前方法是否出现过；
+        for(let i=0;i<ary.length;i++){
+            if(ary[i] === fn){
+                return;
+            }
+        }
+        ary.push(fn);
+    }
+    function run(type,e) {
+        e = e || window.event;
+        e.target =e.target || e.srcElement;
+        e.stopPropagation = e.stopPropagation || function () {                   e.cancelBubble = true;
+        }
+        e.preventDefault = e.preventDefault || function () {
+            e.returnValue = false;
+        }
+        // ...
+        // this --->发布主体
+        let a = this[type];
+        for(let i=0;i<a.length;i++){
+            if(typeof a[i] === "function"){
+                a[i].call(this,e)
+            }
+        }
+    }
+    function off(curEle,type,fn) {
+        let ary = curEle[type];
+        for(let i=0;i<ary.length;i++){
+            if(fn === ary[i]){
+                ary[i] = null;
+            }
+        }
+    }
+    function fn1(e) {
+        // 事件对象；
+        console.log(e);
+        e.stopPropagation();
+    }
+    on(oBox,"dragStart",fn1)
+    on(oBox,"dragStart",fn2);
+    oBox.onmousedown = function (e) {
+
+        run.call(oBox,"dragStart",e);
+    }
+    oBox.onmousemove = function (e) {
+        run.call(oBox,"dragmoving",e);
+    }
+    
+
+
+
+
+
+
+*/ 
+</script>
+</body>
+</html>
